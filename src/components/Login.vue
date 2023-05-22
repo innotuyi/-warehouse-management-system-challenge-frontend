@@ -87,9 +87,9 @@ export default {
       if (role === 'admin') {
         this.$router.push({ name: 'dashboard' });
       } else if (role === 'customer') {
-        this.$router.push({ name: 'userDashboard' });
+        this.$router.push({ name: 'customerDashborad' });
       } else {
-        this.$router.push({ name: 'defaultDashboard' });
+        this.$router.push({ name: 'login' });
       }
     } catch (error) {
       console.log(error);

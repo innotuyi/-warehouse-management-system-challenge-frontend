@@ -1,93 +1,34 @@
 <template>
-  <div class="row">
-    <div class="col-12 mb-2 text-end m-2">
-      <router-link :to="{ name: 'AddProduct' }" class="btn btn-primary"
-        >Add Product</router-link
-      >
-    </div>
-    <!-- <div class="col-12">
-      <div class="card">
-        <div class="card-header">
-          <h4>products</h4>
-        </div>
-        <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Name</th>
-                  <th>Description</th>
-                  <th>Price</th>
-                    <th>Quantity</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody v-if="products.length > 0">
-                <tr v-for="(product, key) in products" :key="key">
-                  <td>{{ product.id }}</td>
-                  <td>{{ product.name }}</td>
-                  <td>{{ product.description }}</td>
-                  <td>{{ product.price }}</td>
-                   <td>{{ product.quantity }}</td>
-
-                  <td>
-                    <router-link
-                      :to="{
-                        name: 'productEdit',
-                        params: { id: product.id, quantity: product.quantity}
-                       
-                      }"
-                      class="btn btn-success"
-                      >Edit</router-link
-                    >
-
-                     <router-link
-                      :to="{
-                        name: 'createOrder',
-                        params: { id: product.id }
-                      }"
-                      class="btn btn-success"
-                      >Order</router-link
-                    >
-
-                     <router-link
-                      :to="{
-                        name: 'AddStock',
-                        params: { 
-                          id: product.id 
-                          
-                          }
-                      }"
-                      class="btn btn-success"
-
-                      >Add in stock</router-link
-                    >
-                  </td>
-                </tr>
-              </tbody>
-              <tbody v-else>
-                <tr>
-                  <td colspan="4" align="center">No products Found.</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+  <main>
+    <HeaderView />
+    <div class="row">
+      <div class="col-12 mb-2 text-end m-2">
+        <router-link
+          v-if="shouldShowAddProductLink"
+          :to="{ name: 'AddProduct' }"
+          class="btn btn-primary"
+        >
+          Add Product
+        </router-link>
       </div>
-    </div> -->
-
-    <data-table v-bind="parameters" />
-  </div>
+      <div class="col-md-8 offset-md-2">
+        <data-table v-bind="parameters" />
+      </div>
+    </div>
+  </main>
 </template>
 
 <script>
-
 import axios from "axios";
+import HeaderView from "./Header.vue";
 import ButtonReport from "./ButtonReport.vue";
+import { token } from './token.js';
 
 export default {
   name: "ProductList",
+  components: {
+    HeaderView,
+  },
 
   data() {
     return {
@@ -125,15 +66,30 @@ export default {
   mounted() {
     this.getCategories();
   },
+
   methods: {
     async getCategories() {
       try {
-        const response = await axios.get("http://127.0.0.1:8000/api/products");
 
+        const response = await axios.get(
+          "http://127.0.0.1:8000/api/products",
+
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         this.parameters.data = response.data;
       } catch (error) {
         console.log(error);
       }
+    },
+  },
+  computed: {
+    shouldShowAddProductLink() {
+      const role = localStorage.getItem("role");
+      return role !== "customer";
     },
   },
 };

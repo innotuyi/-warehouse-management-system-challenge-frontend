@@ -9,9 +9,12 @@ import CreateStock from "@/components/CreateStock";
 import MakeOrder from "@/components/MakeOrder";
 import UpdateOrder from "@/components/UpdateOrder";
 import Login from "@/components/Login";
+import LogoutView from "@/components/Logout";
 import Statistics from "@/components/Statatistics";
 import Dashboard from "@/components/Dashboard";
 import home from "../Views/HomeView";
+import customerDashboard from "../Views/customerDashboard";
+
 
 
 Vue.use(Router);
@@ -80,16 +83,26 @@ const router = new Router({
       path: "/login",
       component: Login
     },
+    {
+      name: "logout",
+      path: "/logout",
+      component: LogoutView
+    },
 
     {
       name: "statistics",
-      path: "/statistics",
+      path: "/statistics/dashboard",
       component: Statistics,
     },
     {
       name: "dashboard",
       path: "/admin/dashboard",
       component: Dashboard,
+    },
+    {
+      name: "customerDashborad",
+      path: "/customer/dashboard",
+      component: customerDashboard,
     },
   ]
 });
