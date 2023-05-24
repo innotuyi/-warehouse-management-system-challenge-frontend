@@ -1,4 +1,25 @@
 
 a {
-    color:lightblue
+    color:#fff !important;
+    font-weight: 700;
+}
+
+.navbar-toggler {
+    background-color: #fff !important
+
+}
+
+.dropdown-item {
+    color: black !important;
+}
+
+
+
+
+@media(max-width:400px) {
+
+    .header {
+
+       background-color: gold !important;
+    }
 }

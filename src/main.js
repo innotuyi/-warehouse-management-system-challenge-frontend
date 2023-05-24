@@ -5,6 +5,7 @@ import App from './App.vue'
 import router from './router'
 
 
+
 import DataTable from "@andresouzaabreu/vue-data-table";
 import "@andresouzaabreu/vue-data-table/dist/DataTable.css";
 

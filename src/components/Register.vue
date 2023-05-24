@@ -110,7 +110,7 @@ export default {
       if (Object.keys(this.errors).length === 0) {
          try {
         await axios.post("http://127.0.0.1:8000/api/register", this.payload);
-        this.$router.push({ name: "sta" });
+        this.$router.push({ name: "login" });
       } catch (error) {
         console.log(error);
       }

@@ -3,18 +3,19 @@ import Router from "vue-router";
 import CategoryEdit from "@/components/EditProduct";
 import ProductList from "@/components/ProductList";
 import Stock from "@/components/Stock";
+import SaleReport from "@/components/SalesReport";
 import Order from "@/components/Order";
 import AddProduct from "@/components/AddProduct";
 import CreateStock from "@/components/CreateStock";
 import MakeOrder from "@/components/MakeOrder";
 import UpdateOrder from "@/components/UpdateOrder";
 import Login from "@/components/Login";
+import Register from "@/components/Register";
 import LogoutView from "@/components/Logout";
 import Statistics from "@/components/Statatistics";
 import Dashboard from "@/components/Dashboard";
 import home from "../Views/HomeView";
 import customerDashboard from "../Views/customerDashboard";
-
 
 
 Vue.use(Router);
@@ -73,6 +74,12 @@ const router = new Router({
     },
 
     {
+      name: "register",
+      path: "/register",
+      component: Register
+    },
+
+    {
       name: "updateOrder",
       path: "/order/:id/edit",
       component: UpdateOrder
@@ -103,6 +110,12 @@ const router = new Router({
       name: "customerDashborad",
       path: "/customer/dashboard",
       component: customerDashboard,
+    },
+
+    {
+      name: "reports",
+      path: "/reports",
+      component: SaleReport,
     },
   ]
 });

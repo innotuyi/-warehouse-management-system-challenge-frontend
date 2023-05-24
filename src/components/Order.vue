@@ -13,34 +13,35 @@
                 <thead>
                   <tr>
                     <th>ID</th>
-                    <th>customer ID</th>
-                    <th>Product ID</th>
+                    <th>Customer Name</th>
+                    <th>Product Name</th>
                     <th>Quantity</th>
 
                     <th>Price</th>
                     <th>Order Date</th>
                     <th>Status</th>
-                    <th>Actions</th>
+                    <th  v-if="shouldShowAddProductLink">Actions</th>
                   </tr>
                 </thead>
                 <tbody v-if="products.length > 0">
                   <tr v-for="(product, key) in products" :key="key">
-                    <td>{{ product.id }}</td>
-                    <td>{{ product.customer_id }}</td>
-                    <td>{{ product.product_id }}</td>
+                    <td>{{ product.order_id }}</td>
+                    <td>{{ product.customer_name }}</td>
+                    <td>{{ product.product_name }}</td>
                     <td>{{ product.quantity }}</td>
 
                     <td>{{ product.price }}</td>
                     <td>{{ product.created_at }}</td>
                     <td class="text-danger">{{ product.status }}......</td>
 
-                    <td>
+                    <td  v-if="shouldShowAddProductLink">
                       <router-link
                         :to="{
                           name: 'updateOrder',
                           params: { id: product.id },
                         }"
                         class="btn btn-success"
+                        
                         >Approve Order/ Cancel</router-link
                       >
                     </td>
@@ -62,6 +63,7 @@
 
 <script>
 import axios from "axios";
+import { token } from "./token.js";
 import HeaderView from "./Header.vue";
 
 export default {
@@ -81,26 +83,23 @@ export default {
   methods: {
     async getCategories() {
       try {
-        const response = await axios.get("http://127.0.0.1:8000/api/orders");
+        const response = await axios.get("http://127.0.0.1:8000/api/orders", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         this.products = response.data;
         console.log("stock available", this.products);
       } catch (error) {
         console.log(error);
       }
     },
+  },
 
-    async deleteCategory(id) {
-      if (confirm("Are you sure to delete this category ?")) {
-        try {
-          const response = await axios.delete(
-            `http://127.0.0.1:8000/api/category/${id}`
-          );
-          console.log(response);
-          this.getCategories();
-        } catch (error) {
-          console.log(error);
-        }
-      }
+  computed: {
+    shouldShowAddProductLink() {
+      const role = localStorage.getItem("role");
+      return role !== "customer";
     },
   },
 };

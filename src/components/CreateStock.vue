@@ -34,7 +34,7 @@
 
 <script>
 import axios from 'axios'
-
+import { token } from './token.js';
 export default {
     name:"create-order",
     data(){
@@ -52,7 +52,13 @@ export default {
         async create(){
             try {
 
-            await axios.post('http://127.0.0.1:8000/api/stock/create',this.product)
+            await axios.post('http://127.0.0.1:8000/api/stock/create',this.product,
+               {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+            )
 
              this.$router.push({name:"stock"})
                 

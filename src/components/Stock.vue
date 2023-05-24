@@ -56,6 +56,8 @@
 
 <script>
 import axios from "axios";
+import { token } from "./token.js";
+
 import HeaderView from "./Header.vue";
 
 export default {
@@ -75,22 +77,18 @@ export default {
   methods: {
     async getCategories() {
       try {
-        const response = await axios.get("http://127.0.0.1:8000/api/stocks");
+        const response = await axios.get("http://127.0.0.1:8000/api/stocks",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+        
+        );
         this.products = response.data;
         console.log("stock available", this.products);
       } catch (error) {
         console.log(error);
-      }
-    },
-
-    async deleteCategory(id) {
-      if (confirm("Are you sure to delete this category ?")) {
-        try {
-          await axios.delete(`http://127.0.0.1:8000/api/category/${id}`);
-          this.getCategories();
-        } catch (error) {
-          console.log(error);
-        }
       }
     },
   },

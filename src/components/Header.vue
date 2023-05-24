@@ -1,7 +1,7 @@
 <template>
   <div class="row bg-dark">
     <div class="col-md-7 offset-md-3">
-      <nav class="navbar navbar-expand-lg bg-dark">
+      <nav class="navbar navbar-expand-lg">
         <button
           class="navbar-toggler"
           type="button"
@@ -16,8 +16,9 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
             <li class="nav-item active">
-              <a class="nav-link" href="#"
-                >Dashboard <span class="sr-only">(current)</span></a
+              <router-link class="nav-link" to="/statistics/dashboard"
+              
+                >Dashboard <span class="sr-only">(current)</span></router-link
               >
             </li>
 
@@ -41,7 +42,7 @@
                   to="/category/add"
                   class="dropdown-item"
                   href="#"
-                  v-if="shouldShowAddProduct"
+                  v-if="shouldShowAddProductLink"
                   >Add Product</router-link
                 >
                 <router-link to="/product" class="dropdown-item" href="#"
@@ -50,7 +51,7 @@
               </div>
             </li>
 
-            <li class="nav-item dropdown" v-if="shouldShowStock">
+            <li class="nav-item dropdown"  v-if="shouldShowAddProductLink">
               <a
                 class="nav-link dropdown-toggle"
                 href="#"
@@ -71,7 +72,7 @@
               </div>
             </li>
 
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown" >
               <a
                 class="nav-link dropdown-toggle"
                 href="#"
@@ -92,7 +93,7 @@
               </div>
             </li>
 
-            <li class="nav-item dropdown" v-if="shouldShowReports">
+            <li class="nav-item dropdown"  v-if="shouldShowAddProductLink">
               <a
                 class="nav-link dropdown-toggle"
                 href="#"
@@ -107,11 +108,8 @@
                 class="dropdown-menu"
                 aria-labelledby="navbarDropdownMenuLink"
               >
-                <router-link class="dropdown-item" to=""
-                  >Inventory Report</router-link
-                >
-                <router-link class="dropdown-item" to=""
-                  >Sales Report</router-link
+                <router-link class="dropdown-item" to="/reports"
+                  >All reports</router-link
                 >
               </div>
             </li>
@@ -156,19 +154,14 @@ export default {
         console.error(error);
       }
     },
-
-    shouldShowAddProduct() {
-      const role = localStorage.getItem("role");
-      return role === "admin";
-    },
-    shouldShowStock() {
-      const role = localStorage.getItem("role");
-      return role === "admin";
-    },
-    shouldShowReports() {
-      const role = localStorage.getItem("role");
-      return role === "admin";
-    },
   },
+  computed: {
+    shouldShowAddProductLink() {
+      const role = localStorage.getItem("role");
+      return role !== "customer";
+    }
+  }
+
+  
 };
 </script>

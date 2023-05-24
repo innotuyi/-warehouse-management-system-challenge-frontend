@@ -1,14 +1,14 @@
 <template>
   <div class="row">
     <div class="card mb-2">
-      <button class="btn btn-success" @click="edit()">Edit</button>
+      <button class="btn btn-success" @click="edit()"  v-if="shouldShowAddProductLink">Edit</button>
     </div>
     <div class="card mb-2">
-      <button class="btn btn-success" @click="order()">Order</button>
+      <button class="btn " @click="order()" >Order</button>
     </div>
 
     <div class="card mb-2">
-      <button class="btn btn-success" @click="stock()">
+      <button class="btn btn-success" @click="stock()"  v-if="shouldShowAddProductLink">
         Add in stock
       </button>
     </div>
@@ -56,9 +56,15 @@ export default {
     },
   },
   props: {
-    // prop below is REQUIRED:
     data: {
       type: Object,
+    },
+  },
+
+   computed: {
+    shouldShowAddProductLink() {
+      const role = localStorage.getItem("role");
+      return role !== "customer";
     },
   },
 };

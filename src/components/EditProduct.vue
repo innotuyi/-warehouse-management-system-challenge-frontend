@@ -51,6 +51,8 @@
 
 <script>
 import axios from "axios";
+import { token } from "./token.js";
+
 
 export default {
   name: "UpdateCategory",
@@ -72,7 +74,13 @@ export default {
     async showCategory() {
       try {
         const response = await axios.get(
-          `http://127.0.0.1:8000/api/product/${this.$route.params.id}`
+          `http://127.0.0.1:8000/api/product/${this.$route.params.id}`,
+            {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+
         );
         const { name, description, price } = response.data;
 
@@ -89,6 +97,11 @@ export default {
       try {
         await axios.put(
           `http://127.0.0.1:8000/api/products/update/${this.$route.params.id}`,
+            {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
 
           this.product
         );
