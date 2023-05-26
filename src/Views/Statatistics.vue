@@ -89,7 +89,7 @@ export default {
   mounted() {
     this.getTotalProduct();
     this.getTotalOrder();
-    this.getTotalStock();
+    this.getTotalStock(); 
   },
   methods: {
     async getTotalProduct() {

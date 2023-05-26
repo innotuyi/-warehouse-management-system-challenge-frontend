@@ -11,9 +11,13 @@
     "@andresouzaabreu/vue-data-table": "^3.3.3",
     "axios": "^1.4.0",
     "core-js": "^3.8.3",
+    "install": "^0.13.0",
     "vue": "^2.6.14",
+    "vue-progressbar": "^0.7.5",
     "vue-router": "3.01",
-    "vue-toastify": "^2.0.0-alpha.1"
+    "vue-toastify": "^2.0.0-alpha.1",
+    "vuejs-noty": "^0.1.4",
+    "vuejs-progress-bar": "^1.2.8"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
