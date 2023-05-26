@@ -20,7 +20,7 @@
                     <th>Price</th>
                     <th>Order Date</th>
                     <th>Status</th>
-                    <th  v-if="shouldShowAddProductLink">Actions</th>
+                    <th v-if="shouldShowAddProductLink">Actions</th>
                   </tr>
                 </thead>
                 <tbody v-if="products.length > 0">
@@ -34,14 +34,13 @@
                     <td>{{ product.created_at }}</td>
                     <td class="text-danger">{{ product.status }}......</td>
 
-                    <td  v-if="shouldShowAddProductLink">
+                    <td v-if="shouldShowAddProductLink">
                       <router-link
                         :to="{
                           name: 'updateOrder',
                           params: { id: product.id },
                         }"
                         class="btn btn-success"
-                        
                         >Approve Order/ Cancel</router-link
                       >
                     </td>
@@ -63,7 +62,7 @@
 
 <script>
 import axios from "axios";
-import { token } from "../components/token";
+import {headers} from '../helpers/apiConfig'
 import HeaderView from "../components/Header.vue";
 export default {
   name: "OrderList",
@@ -82,11 +81,7 @@ export default {
   methods: {
     async getCategories() {
       try {
-        const response = await axios.get("http://127.0.0.1:8000/api/orders", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await axios.get("/api/orders", {headers});
         this.products = response.data;
         console.log("stock available", this.products);
       } catch (error) {
@@ -94,7 +89,6 @@ export default {
       }
     },
   },
-
   computed: {
     shouldShowAddProductLink() {
       const role = localStorage.getItem("role");

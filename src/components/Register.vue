@@ -108,23 +108,20 @@ export default {
         this.errors.confirmPassword = "Passwords do not match";
       }
       if (Object.keys(this.errors).length === 0) {
-         try {
-        await axios.post("http://127.0.0.1:8000/api/register", this.payload);
-        this.$router.push({ name: "login" });
-      } catch (error) {
-        console.log(error);
+        try {
+          await axios.post("/api/register", this.payload);
+          this.$router.push({ name: "login" });
+        } catch (error) {
+          console.log(error);
+        }
       }
-      }
-
-     
     },
   },
 };
 </script>
 
-
 <style scoped>
 .error {
-    color: brown;
+  color: brown;
 }
 </style>

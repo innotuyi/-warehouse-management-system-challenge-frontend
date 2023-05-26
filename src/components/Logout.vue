@@ -10,7 +10,7 @@ export default {
   methods: {
     async logout() {
       try {
-        await axios.post('http://127.0.0.1:8000/api/logout');
+        await axios.post('/api/logout');
         this.$router.push('/');
       } catch (error) {
         console.error(error);

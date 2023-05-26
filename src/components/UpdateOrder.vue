@@ -47,6 +47,7 @@
 
 <script>
 import axios from 'axios'
+import {headers} from '../helpers/apiConfig'
 
 export default {
   name: "update-category",
@@ -66,7 +67,7 @@ export default {
     async showCategory() { 
       try {
         await axios.get(
-          `http://127.0.0.1:8000/api/product/${this.$route.params.id}`
+          `/api/product/${this.$route.params.id}`
         );
 
 
@@ -77,10 +78,7 @@ export default {
     async update() {
       try {
         await axios.put(
-          `http://127.0.0.1:8000/api/order/update/${this.$route.params.id}`,
-
-          this.product
-        );
+          `/api/order/update/${this.$route.params.id}`, {headers}, this.product);
 
         this.$router.push({ name: "order" });
       } catch (error) {

@@ -56,9 +56,8 @@
 
 <script>
 import axios from "axios";
-import { token } from "../components/token";
-
 import HeaderView from "../components/Header.vue";
+import {headers} from '../helpers/apiConfig'
 
 export default {
   name: "StockList",
@@ -77,14 +76,7 @@ export default {
   methods: {
     async getCategories() {
       try {
-        const response = await axios.get("http://127.0.0.1:8000/api/stocks",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-        
-        );
+        const response = await axios.get("/api/stocks", { headers });
         this.products = response.data;
         console.log("stock available", this.products);
       } catch (error) {

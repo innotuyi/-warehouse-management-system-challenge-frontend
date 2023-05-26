@@ -71,7 +71,7 @@
 
 <script>
 import HeaderView from "../components/Header.vue";
-import { token } from "../components/token";
+import {headers} from '../helpers/apiConfig'
 import axios from "axios";
 export default {
   name: "StatisticsView",
@@ -94,13 +94,7 @@ export default {
   methods: {
     async getTotalProduct() {
       try {
-        const response = await axios.get(
-          "http://127.0.0.1:8000/api/dashboard/statistics/product",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
+        const response = await axios.get("/api/dashboard/statistics/product",{headers}
         );
         this.totalProduct = response.data;
         console.log("product available", this.totalProduct);
@@ -111,12 +105,7 @@ export default {
     async getTotalOrder() {
       try {
         const response = await axios.get(
-          "http://127.0.0.1:8000/api/dashboard/statistics/order",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
+          "/api/dashboard/statistics/order",{headers}
         );
         this.totalOrder = response.data;
         console.log("total order", this.totalOrder);
@@ -126,14 +115,7 @@ export default {
     },
     async getTotalStock() {
       try {
-        const response = await axios.get(
-          "http://127.0.0.1:8000/api/dashboard/statistics/stock",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await axios.get("/api/dashboard/statistics/stock", {headers});
         this.totalStock = response.data;
         console.log("totalStock", this.totalProduct);
       } catch (error) {

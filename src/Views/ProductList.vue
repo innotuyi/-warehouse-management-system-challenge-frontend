@@ -22,7 +22,7 @@
 import axios from "axios";
 import HeaderView from "../components/Header.vue";
 import ButtonReport from "../components/ButtonReport.vue";
-import { token } from "../components/token";
+import {headers} from '../helpers/apiConfig'
 export default {
   name: "ProductList",
   components: {
@@ -70,14 +70,7 @@ export default {
     async getCategories() {
       try {
 
-        const response = await axios.get(
-          "http://127.0.0.1:8000/api/products",
-
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
+        const response = await axios.get("/api/products", {headers}
         );
         this.parameters.data = response.data;
       } catch (error) {

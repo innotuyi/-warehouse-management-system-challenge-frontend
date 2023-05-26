@@ -52,7 +52,7 @@
 
 <script>
 import axios from "axios";
-
+import { headers } from "../helpers/apiConfig";
 export default {
   name: "add-category",
   data() {
@@ -67,17 +67,7 @@ export default {
   methods: {
     async create() {
       try {
-           const token = localStorage.getItem('token');
-        await axios.post(
-          "http://127.0.0.1:8000/api/products/add",
-          this.product,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-
+        await axios.post("/api/products/add", this.product, { headers });
         this.$router.push({ name: "productList" });
       } catch (error) {
         console.log(error);

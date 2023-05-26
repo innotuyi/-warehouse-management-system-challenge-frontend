@@ -65,25 +65,25 @@
           </div>
           <div class="card-body">
             <ul class="list-group list-group-flush">
-                <li
-              class="list-group-item"
-              v-for="(customer, index) in customers"
-              :key="index"
-            >
-              <h5>
-                <span class="text-bold">Customer ID</span>:
-                {{ customer.customer_id }}
-              </h5>
-              <h5>
-                <span class="text-bold">Order Count</span>:{{
-                  customer.order_count
-                }}
-              </h5>
-              <h5>
-                <span class="text-bold">Average order Value</span>:
-                {{ customer.average_order_value }}
-              </h5>
-            </li>
+              <li
+                class="list-group-item"
+                v-for="(customer, index) in customers"
+                :key="index"
+              >
+                <h5>
+                  <span class="text-bold">Customer ID</span>:
+                  {{ customer.customer_id }}
+                </h5>
+                <h5>
+                  <span class="text-bold">Order Count</span>:{{
+                    customer.order_count
+                  }}
+                </h5>
+                <h5>
+                  <span class="text-bold">Average order Value</span>:
+                  {{ customer.average_order_value }}
+                </h5>
+              </li>
             </ul>
           </div>
         </div>
@@ -116,9 +116,8 @@
 </template>
 
 <script>
-import { token } from "./token.js";
 import HeaderView from "./Header.vue";
-
+import { headers } from "../helpers/apiConfig";
 import axios from "axios";
 export default {
   name: "SalesReportView",
@@ -143,14 +142,7 @@ export default {
   methods: {
     async getSalesReport() {
       try {
-        const response = await axios.get(
-          "http://127.0.0.1:8000/api/sales/report",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await axios.get("/api/sales/report", { headers });
         this.products = response.data;
         console.log("sales report", this.products);
       } catch (error) {
@@ -159,14 +151,7 @@ export default {
     },
     async getRevenueReport() {
       try {
-        const response = await axios.get(
-          "http://127.0.0.1:8000/api/revenue/report",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await axios.get("/api/revenue/report", { headers });
         this.revenues = response.data;
         console.log("Revenue Report", this.revenues);
       } catch (error) {
@@ -175,14 +160,7 @@ export default {
     },
     async getCustomerReport() {
       try {
-        const response = await axios.get(
-          "http://127.0.0.1:8000/api/customers/report",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await axios.get("/api/customers/report", { headers });
         this.customers = response.data;
         console.log("customer report", this.customers);
       } catch (error) {
@@ -192,14 +170,7 @@ export default {
 
     async getInventoryReport() {
       try {
-        const response = await axios.get(
-          "http://127.0.0.1:8000/api/inventory/report",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await axios.get("/api/inventory/report", { headers });
         this.items = response.data;
         console.log("inventory report", this.items);
       } catch (error) {

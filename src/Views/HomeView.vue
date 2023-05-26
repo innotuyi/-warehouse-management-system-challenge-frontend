@@ -6,30 +6,24 @@
       </div>
 
       <div class="col-md-3">
-         <router-link to="/register" class="btn  btn-block  mt-2 text-light">Register</router-link>
-       
+        <router-link to="/register" class="btn btn-block mt-2 text-light"
+          >Register</router-link
+        >
       </div>
-
-             
-
-     
     </div>
-      <LoginView></LoginView>
-      <div class="container-fluid">
-    </div>
+    <LoginView></LoginView>
+    <div class="container-fluid"></div>
   </main>
 </template>
 
 <script>
-
 import LoginView from "@/components/Login";
 
 export default {
-   components: {
+  components: {
     LoginView,
   },
-}
+};
 </script>
 
-<style>
-</style>
+<style></style>

@@ -51,8 +51,7 @@
 
 <script>
 import axios from "axios";
-import { token } from "./token.js";
-
+import { headers } from "../helpers/apiConfig";
 
 export default {
   name: "UpdateCategory",
@@ -73,37 +72,22 @@ export default {
   methods: {
     async showCategory() {
       try {
-        const response = await axios.get(
-          `http://127.0.0.1:8000/api/product/${this.$route.params.id}`,
-            {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-
-        );
+        const response = await axios.get(`/${this.$route.params.id}`, {
+          headers,
+        });
         const { name, description, price } = response.data;
-
-        this.product.name = name;
-
-        this.product.description = description;
-
-        this.product.price = price;
+        this.product.name = {
+          name,
+          description,
+          price,
+        };
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     },
     async update() {
       try {
-        await axios.put(
-          `http://127.0.0.1:8000/api/products/update/${this.$route.params.id}`,
-            {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          },
-
-          this.product
+        await axios.put(`/api/products/update/${this.$route.params.id}`,{ headers },this.product
         );
         this.$router.push({ name: "productList" });
       } catch (error) {

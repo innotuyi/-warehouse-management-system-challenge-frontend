@@ -35,7 +35,7 @@
 import axios from 'axios'
 
 export default {
-    name:"add-category",
+    name:"add-order",
     data(){
         return {
             category:{
