@@ -1,10 +1,10 @@
 import Vue from "vue";
 import Router from "vue-router";
 import CategoryEdit from "@/components/EditProduct";
-import ProductList from "@/components/ProductList";
-import Stock from "@/components/Stock";
+import ProductList from "@/Views/ProductList";
+import Stock from "@/Views/Stock";
 import SaleReport from "@/components/SalesReport";
-import Order from "@/components/Order";
+import Order from "@/Views/Order";
 import AddProduct from "@/components/AddProduct";
 import CreateStock from "@/components/CreateStock";
 import MakeOrder from "@/components/MakeOrder";
@@ -12,8 +12,8 @@ import UpdateOrder from "@/components/UpdateOrder";
 import Login from "@/components/Login";
 import Register from "@/components/Register";
 import LogoutView from "@/components/Logout";
-import Statistics from "@/components/Statatistics";
-import Dashboard from "@/components/Dashboard";
+import Statistics from "@/Views/Statatistics";
+import Dashboard from "@/Views/Dashboard";
 import home from "../Views/HomeView";
 import customerDashboard from "../Views/customerDashboard";
 

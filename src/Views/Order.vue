@@ -63,9 +63,8 @@
 
 <script>
 import axios from "axios";
-import { token } from "./token.js";
-import HeaderView from "./Header.vue";
-
+import { token } from "../components/token";
+import HeaderView from "../components/Header.vue";
 export default {
   name: "OrderList",
   components: {

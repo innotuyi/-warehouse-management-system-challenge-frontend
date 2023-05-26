@@ -70,9 +70,8 @@
 </template>
 
 <script>
-import { token } from "./token.js";
-import HeaderView from "./Header.vue";
-
+import HeaderView from "../components/Header.vue";
+import { token } from "../components/token";
 import axios from "axios";
 export default {
   name: "StatisticsView",

@@ -20,10 +20,9 @@
 
 <script>
 import axios from "axios";
-import HeaderView from "./Header.vue";
-import ButtonReport from "./ButtonReport.vue";
-import { token } from './token.js';
-
+import HeaderView from "../components/Header.vue";
+import ButtonReport from "../components/ButtonReport.vue";
+import { token } from "../components/token";
 export default {
   name: "ProductList",
   components: {

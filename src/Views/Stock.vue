@@ -56,9 +56,9 @@
 
 <script>
 import axios from "axios";
-import { token } from "./token.js";
+import { token } from "../components/token";
 
-import HeaderView from "./Header.vue";
+import HeaderView from "../components/Header.vue";
 
 export default {
   name: "StockList",
