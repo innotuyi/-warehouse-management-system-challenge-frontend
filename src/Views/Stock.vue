@@ -3,7 +3,7 @@
     <HeaderView />
     <div class="row">
       <div class="col-12 mb-2 text-end m-2">
-        <router-link :to="{ name: 'AddProduct' }" class="btn btn-primary"
+        <router-link class="btn btn-primary"
           >stock</router-link
         >
       </div>

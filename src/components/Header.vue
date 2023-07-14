@@ -15,7 +15,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
-            <li class="nav-item active">
+            <li class="nav-item active" v-if="shouldShowAddProductLink">
               <router-link class="nav-link" to="/statistics/dashboard"
               
                 >Dashboard <span class="sr-only">(current)</span></router-link

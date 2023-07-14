@@ -101,7 +101,8 @@ export default {
             this.$router.push({ name: "login" });
           }
         } catch (error) {
-          this.message = "Username/Password incorrect";
+          console.log("LOGIN_ERROR", error.response.data.message)
+           this.$noty.warning(error.response.data.message);
         }
       }
     },

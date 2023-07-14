@@ -99,7 +99,6 @@ export default {
 
       if (!this.payload.name) {
         this.errors.name = "Name is required";
-        
       }
 
       if (!this.payload.email) {
@@ -122,7 +121,8 @@ export default {
           this.$Progress.finish();
           this.$router.push({ name: "login" });
         } catch (error) {
-          this.$noty.warning(error.message);
+          this.$noty.warning(error.response.data.message);
+
           this.$Progress.fail();
         }
       }

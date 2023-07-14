@@ -21,18 +21,6 @@
 
               <div class="col-12 mb-2">
                 <div class="form-group">
-                  <label>Available quantity</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    v-model="available.available_quantity"
-                    disabled
-                  />
-                </div>
-              </div>
-
-              <div class="col-12 mb-2">
-                <div class="form-group">
                   <label>Quantiy</label>
                   <input
                     type="number"

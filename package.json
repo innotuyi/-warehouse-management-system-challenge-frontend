@@ -17,7 +17,8 @@
     "vue-router": "3.01",
     "vue-toastify": "^2.0.0-alpha.1",
     "vuejs-noty": "^0.1.4",
-    "vuejs-progress-bar": "^1.2.8"
+    "vuejs-progress-bar": "^1.2.8",
+    "vuelidate": "^0.7.7"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",

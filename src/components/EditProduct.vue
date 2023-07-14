@@ -72,22 +72,22 @@ export default {
   methods: {
     async showCategory() {
       try {
-        const response = await axios.get(`/${this.$route.params.id}`, {
+        const response = await axios.get(`/api/product/${this.$route.params.id}`, {
           headers,
         });
         const { name, description, price } = response.data;
-        this.product.name = {
-          name,
-          description,
-          price,
-        };
+        this.product.name = name, 
+        this.product.description = description;
+        this.product.price = price;
       } catch (error) {
         console.log(error);
       }
     },
     async update() {
       try {
-        await axios.put(`/api/products/update/${this.$route.params.id}`,{ headers },this.product
+        await axios.put(
+          `/api/products/update/${this.$route.params.id}`,
+          this.product
         );
         this.$router.push({ name: "productList" });
       } catch (error) {

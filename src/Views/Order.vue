@@ -40,7 +40,7 @@
                           name: 'updateOrder',
                           params: { id: product.id },
                         }"
-                        class="btn btn-success"
+                        class="btn btn-secondary"
                         >Approve Order/ Cancel</router-link
                       >
                     </td>
@@ -62,7 +62,7 @@
 
 <script>
 import axios from "axios";
-import {headers} from '../helpers/apiConfig'
+import { headers } from "../helpers/apiConfig";
 import HeaderView from "../components/Header.vue";
 export default {
   name: "OrderList",
@@ -81,7 +81,7 @@ export default {
   methods: {
     async getCategories() {
       try {
-        const response = await axios.get("/api/orders", {headers});
+        const response = await axios.get("/api/orders", { headers });
         this.products = response.data;
         console.log("stock available", this.products);
       } catch (error) {
